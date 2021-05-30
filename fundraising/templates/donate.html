@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}Donate Us{% endblock title %}
+{% block body %}
+<script>
+    function onlyNumberKey(evt) {
+          
+        // Only ASCII charactar in that range allowed
+        var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+        if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
+            return false;
+        return true;
+    }
+</script>
+<div class="container" style="padding: 0px 100px">
+<h1 style="padding-bottom: 10px; margin-top: -12px; font-size: 46px; color: rgba(0, 0, 0, 0.671);text-align:center ;">We Will Share you Payment Details on your Email!</h1>
+<form method="POST" action="/donate">
+{% csrf_token %}
+  <div class="form-group">
+    <h6><label for="name">Name</label></h6>
+    <div class="row">
+      <div class="col">
+        <input type="text" class="form-control" id="name" name="fname" placeholder="First name">
+      </div>
+      <div class="col">
+        <input type="text" class="form-control" id="name" name="lname" placeholder="Last name">
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <h6><label for="email">Email address</label></h6>
+    <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
+    <small id="emailHelp" class="form-text text-muted">Your Email is Secure with us.</small>
+  </div>
+  <div class="form-group">
+    <h6><label for="contact">Contact Number</label></h6>
+    <input type="text" class="form-control" id="contact" name="phone" onkeypress="return onlyNumberKey(event)">
+  </div>
+  <button type="submit" class="btn btn-dark" style="background-color: rgba(0, 119, 255, 0.87); border:0px;">Submit</button>
+</form>
+</div>
+{% endblock body %}
